@@ -16,7 +16,10 @@
 
 # 安装
 
+note: 我们不需要paddle
+
 ```
+pip install -r requirements.txt
 python setup.py build develop
 ```
 
@@ -28,3 +31,11 @@ from textfrontend.zh_frontend import FrontEnd
 fe = FrontEnd()
 fe.get_phonemes('从前有座山，山里有座庙，庙里有个老和尚')
 ```
+
+
+# QA
+
+1. `  from pypinyin_dict.phrase_pinyin_data import large_pinyin
+OverflowError: line number table is too long`
+
+大概是python3.10的问题

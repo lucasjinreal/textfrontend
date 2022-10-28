@@ -16,7 +16,8 @@ from abc import abstractmethod
 from typing import List
 
 import numpy as np
-import paddle
+from torch import Tensor
+import torch
 from g2p_en import G2p
 from g2pM import G2pM
 
@@ -85,7 +86,7 @@ class English(Phonetics):
     def get_input_ids(self,
                       sentence: str,
                       merge_sentences: bool=False,
-                      to_tensor: bool=True) -> paddle.Tensor:
+                      to_tensor: bool=True) -> Tensor:
         result = {}
         sentences = self.text_normalizer._split(sentence, lang="en")
         phones_list = []
@@ -116,7 +117,7 @@ class English(Phonetics):
         for part_phones_list in phones_list:
             phone_ids = self._p2id(part_phones_list)
             if to_tensor:
-                phone_ids = paddle.to_tensor(phone_ids)
+                phone_ids = torch.as_tensor(phone_ids)
             temp_phone_ids.append(phone_ids)
         result["phone_ids"] = temp_phone_ids
         return result

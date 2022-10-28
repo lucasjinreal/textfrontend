@@ -19,7 +19,8 @@ from typing import List
 
 import jieba.posseg as psg
 import numpy as np
-import paddle
+from torch import Tensor
+import torch
 import yaml
 from g2pM import G2pM
 from pypinyin import lazy_pinyin
@@ -32,7 +33,7 @@ from textfrontend.g2pw import G2PWOnnxConverter
 from textfrontend.generate_lexicon import generate_lexicon
 from textfrontend.tone_sandhi import ToneSandhi
 from textfrontend.zh_normalization.text_normlization import TextNormalizer
-from paddlespeech.t2s.ssml.xml_processor import MixTextProcessor
+from textfrontend.ssml.xml_processor import MixTextProcessor
 
 INITIALS = [
     'b', 'p', 'm', 'f', 'd', 't', 'n', 'l', 'g', 'k', 'h', 'zh', 'ch', 'sh',
@@ -533,13 +534,13 @@ class Frontend():
             if tones:
                 tone_ids = self._t2id(tones)
                 if to_tensor:
-                    tone_ids = paddle.to_tensor(tone_ids)
+                    tone_ids = torch.as_tensor(tone_ids)
                 temp_tone_ids.append(tone_ids)
             if phones:
                 phone_ids = self._p2id(phones)
-                # if use paddle.to_tensor() in onnxruntime, the first time will be too low
+                # if use torch.as_tensor() in onnxruntime, the first time will be too low
                 if to_tensor:
-                    phone_ids = paddle.to_tensor(phone_ids)
+                    phone_ids = torch.as_tensor(phone_ids)
                 temp_phone_ids.append(phone_ids)
         if temp_tone_ids:
             result["tone_ids"] = temp_tone_ids
@@ -557,7 +558,7 @@ class Frontend():
             print_info: bool=False,
             add_blank: bool=False,
             blank_token: str="<pad>",
-            to_tensor: bool=True) -> Dict[str, List[paddle.Tensor]]:
+            to_tensor: bool=True) -> Dict[str, List[Tensor]]:
 
         l_inputs = MixTextProcessor.get_pinyin_split(sentence)
         phonemes = self.get_phonemes_ssml(
@@ -579,13 +580,13 @@ class Frontend():
             if tones:
                 tone_ids = self._t2id(tones)
                 if to_tensor:
-                    tone_ids = paddle.to_tensor(tone_ids)
+                    tone_ids = torch.as_tensor(tone_ids)
                 temp_tone_ids.append(tone_ids)
             if phones:
                 phone_ids = self._p2id(phones)
-                # if use paddle.to_tensor() in onnxruntime, the first time will be too low
+                # if use torch.as_tensor() in onnxruntime, the first time will be too low
                 if to_tensor:
-                    phone_ids = paddle.to_tensor(phone_ids)
+                    phone_ids = torch.as_tensor(phone_ids)
                 temp_phone_ids.append(phone_ids)
         if temp_tone_ids:
             result["tone_ids"] = temp_tone_ids
