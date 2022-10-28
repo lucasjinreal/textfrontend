@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-from paddlespeech.t2s.frontend.phonectic import Phonetics
+from textfrontend.phonectic import Phonetics
 """
 A phonology system with ARPABET symbols and limited punctuations. The G2P 
 conversion is done by g2p_en.
@@ -19,7 +19,7 @@ conversion is done by g2p_en.
 Note that g2p_en does not handle words with hypen well. So make sure the input
 sentence is first normalized.
 """
-from paddlespeech.t2s.frontend.vocab import Vocab
+from textfrontend.vocab import Vocab
 from g2p_en import G2p
 
 

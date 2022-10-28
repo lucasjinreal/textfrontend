@@ -28,10 +28,10 @@ from pypinyin import load_single_dict
 from pypinyin import Style
 from pypinyin_dict.phrase_pinyin_data import large_pinyin
 
-from paddlespeech.t2s.frontend.g2pw import G2PWOnnxConverter
-from paddlespeech.t2s.frontend.generate_lexicon import generate_lexicon
-from paddlespeech.t2s.frontend.tone_sandhi import ToneSandhi
-from paddlespeech.t2s.frontend.zh_normalization.text_normlization import TextNormalizer
+from textfrontend.g2pw import G2PWOnnxConverter
+from textfrontend.generate_lexicon import generate_lexicon
+from textfrontend.tone_sandhi import ToneSandhi
+from textfrontend.zh_normalization.text_normlization import TextNormalizer
 from paddlespeech.t2s.ssml.xml_processor import MixTextProcessor
 
 INITIALS = [

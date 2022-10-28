@@ -20,10 +20,10 @@ import paddle
 from g2p_en import G2p
 from g2pM import G2pM
 
-from paddlespeech.t2s.frontend.normalizer.normalizer import normalize
-from paddlespeech.t2s.frontend.punctuation import get_punctuations
-from paddlespeech.t2s.frontend.vocab import Vocab
-from paddlespeech.t2s.frontend.zh_normalization.text_normlization import TextNormalizer
+from textfrontend.normalizer.normalizer import normalize
+from textfrontend.punctuation import get_punctuations
+from textfrontend.vocab import Vocab
+from textfrontend.zh_normalization.text_normlization import TextNormalizer
 
 # discard opencc untill we find an easy solution to install it on windows
 # from opencc import OpenCC
